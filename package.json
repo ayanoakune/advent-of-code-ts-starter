@@ -1,5 +1,5 @@
 {
-  "name": "Advent of Code - Typescript Starter",
+  "name": "advent-of-code-ts-starter",
   "private": true,
   "type": "module",
   "scripts": {
