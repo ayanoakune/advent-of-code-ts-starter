@@ -6,5 +6,5 @@ export default defineNuxtConfig({
     enabled: "development" === process.env.NODE_ENV,
   },
 
-  modules: ["@nuxt/ui"],
+  modules: ["@nuxt/ui", "@nuxtjs/tailwindcss"],
 });
