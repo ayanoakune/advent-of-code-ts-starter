@@ -45,6 +45,17 @@ async function getFileRawContent(
   return code.default;
 }
 
+async function getInputForSolution(
+  year: number | string,
+  day: number | string
+): Promise<string> {
+  const input = await import(
+    `~/advent-of-code/${year}/day-${day}-input.txt?raw`
+  );
+
+  return input.default;
+}
+
 async function getSolutions(
   year: number | string,
   day: number | string
@@ -93,8 +104,10 @@ onMounted(async () => {
       day
     );
 
-    answerOfFirstHalf.value = solutionFirstHalf();
-    answerOfSecondHalf.value = solutionSecondHalf();
+    const input = await getInputForSolution(year, day);
+
+    answerOfFirstHalf.value = solutionFirstHalf(input);
+    answerOfSecondHalf.value = solutionSecondHalf(input);
   } catch (err) {
     throw new Error("something wrong");
   }
