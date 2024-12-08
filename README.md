@@ -1,75 +1,38 @@
-# Nuxt Minimal Starter
+# Advent of Code - Typescript Starter
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This is a starter project for [Advent of Code](https://adventofcode.com), for those who want to write their solutions in Typescript. Project is built on top of [Nuxt](https://nuxt.com), helping you to solve the puzzles in a more efficient way and later display your solutions in a beautiful manner.
 
-## Setup
+This project allows you to:
 
-Make sure to install dependencies:
+* write your code in Typescript, with type checking and intellisense,
+* display your solutions in a beautiful manner,
+* and more!
 
-```bash
-# npm
-npm install
+## Prerequisites
 
-# pnpm
-pnpm install
+Before you begin, ensure you have met the following requirements:
 
-# yarn
-yarn install
+* Node.js - 18.x or newer (recommended latest LTS version)
+* Package manager - pnpm
 
-# bun
-bun install
+## Getting started
+
+Install the dependencies:
+
+```sh
+pnpm i
 ```
 
-## Development Server
+## Running locally
 
-Start the development server on `http://localhost:3000`:
+To run the project locally, run:
 
-```bash
-# npm
-npm run dev
-
-# pnpm
+```sh
 pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+You can now access the project at `http://localhost:3000`.
 
-Build the application for production:
+## Building for production
 
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+WIP.
