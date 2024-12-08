@@ -1,5 +1,11 @@
 <template>
   <div>
-    <NuxtPage></NuxtPage>
+    <NuxtPage />
   </div>
 </template>
+<style>
+html,
+body {
+  min-height: 100vh;
+}
+</style>
