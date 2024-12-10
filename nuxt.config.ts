@@ -6,6 +6,7 @@ export default defineNuxtConfig({
       class: "min-h-screen",
     },
   },
+  css: ["highlight.js/styles/atom-one-light.css"],
   devtools: {
     enabled: "development" === process.env.NODE_ENV,
   },

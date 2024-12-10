@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const tshl = useTypescriptHighlight();
 const route = useRoute();
 
 function getYearFromRoute(): string {
@@ -88,9 +89,39 @@ async function getSolutions(
   return [solutions.solutionFirstHalf, solutions.solutionSecondHalf];
 }
 
+/**
+ * Get the whole file code (as raw) as one single string value.
+ */
 const code = ref("");
-const answerOfFirstHalf = ref("");
-const answerOfSecondHalf = ref("");
+
+/**
+ * Input for the solution.
+ */
+const input = ref("");
+
+/**
+ * Function of the first half of the solution.
+ */
+const fnOfFirstHalf = ref<Function>(() => "");
+
+/**
+ * Function of the second half of the solution.
+ */
+const fnOfSecondHalf = ref<Function>(() => "");
+
+/**
+ * Output of the first half of the solution.
+ */
+const outputOfFirstHalf = ref("");
+
+/**
+ * Output of the second half of the solution.
+ */
+const outputOfSecondHalf = ref("");
+
+useHead({
+  title: `Advent of Code ${route.params.year} - Day ${route.params.day}`,
+});
 
 onMounted(async () => {
   try {
@@ -98,23 +129,47 @@ onMounted(async () => {
     const day = getDayFromRoute();
 
     code.value = await getFileRawContent(year, day);
+    input.value = await getInputForSolution(year, day);
 
     const [solutionFirstHalf, solutionSecondHalf] = await getSolutions(
       year,
       day
     );
 
-    const input = await getInputForSolution(year, day);
-
-    answerOfFirstHalf.value = solutionFirstHalf(input);
-    answerOfSecondHalf.value = solutionSecondHalf(input);
+    fnOfFirstHalf.value = solutionFirstHalf;
+    fnOfSecondHalf.value = solutionSecondHalf;
   } catch (err) {
     throw new Error("something wrong");
   }
 });
+
+function runFnOfFirstHalf() {
+  outputOfFirstHalf.value = fnOfFirstHalf.value();
+}
+
+function runFnOfSecondHalf() {
+  outputOfSecondHalf.value = fnOfSecondHalf.value();
+}
 </script>
 <template>
-  <code>{{ code }}</code>
-  <div>{{ answerOfFirstHalf }}</div>
-  <div>{{ answerOfSecondHalf }}</div>
+  <div class="py-10">
+    <header>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">
+          Advent of Code {{ route.params.year }} - Day {{ route.params.day }}
+        </h1>
+      </div>
+    </header>
+    <main>
+      <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div class="block">
+          <div class="mx-auto max-w-7xl">
+            <pre class="whitespace-pre-line">
+              <code v-html="tshl(code)" />
+            </pre>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
 </template>
